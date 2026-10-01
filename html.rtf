@@ -1,0 +1,112 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling1\cocoaplatform1{\fonttbl\f0\fnil\fcharset0 .SFUI-Regular;\f1\fnil\fcharset0 .AppleColorEmojiUI;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\slleading58\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="UTF-8">\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+  <title>My Telegram App</title>\
+\
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>\
+\
+  <style>\
+    * \{\
+      box-sizing: border-box;\
+    \}\
+\
+    body \{\
+      margin: 0;\
+      padding: 20px;\
+      font-family: Arial, sans-serif;\
+      background: var(--tg-theme-bg-color, #ffffff);\
+      color: var(--tg-theme-text-color, #222222);\
+      text-align: center;\
+    \}\
+\
+    .container \{\
+      max-width: 450px;\
+      margin: 50px auto;\
+      padding: 25px;\
+      border-radius: 18px;\
+      background: var(--tg-theme-secondary-bg-color, #f2f2f2);\
+    \}\
+\
+    h1 \{\
+      margin-bottom: 10px;\
+    \}\
+\
+    #user \{\
+      margin: 20px 0;\
+      line-height: 1.7;\
+    \}\
+\
+    button \{\
+      width: 100%;\
+      padding: 14px;\
+      border: 0;\
+      border-radius: 12px;\
+      background: #2481cc;\
+      color: white;\
+      font-size: 16px;\
+      cursor: pointer;\
+    \}\
+  </style>\
+</head>\
+\
+<body>\
+\
+  <div class="container">\
+    <h1>Welcome 
+\f1 \uc0\u55357 \u56395 
+\f0 </h1>\
+\
+    <div id="user">\
+      Loading Telegram information...\
+    </div>\
+\
+    <button onclick="closeApp()">Close</button>\
+  </div>\
+\
+  <script>\
+    const tg = window.Telegram.WebApp;\
+\
+    // Tell Telegram the Mini App is ready\
+    tg.ready();\
+\
+    // Expand the Mini App\
+    tg.expand();\
+\
+    // Get the Telegram user's information\
+    const user = tg.initDataUnsafe.user;\
+\
+    if (user) \{\
+      document.getElementById("user").innerHTML = `\
+        <strong>Hello, $\{escapeHTML(user.first_name || "User")\}!</strong><br><br>\
+        Telegram ID: $\{user.id\}<br>\
+        Username: $\{user.username ? "@" + escapeHTML(user.username) : "Not provided"\}\
+      `;\
+    \} else \{\
+      document.getElementById("user").innerHTML =\
+        "Open this page through your Telegram Mini App.";\
+    \}\
+\
+    function closeApp() \{\
+      tg.close();\
+    \}\
+\
+    function escapeHTML(text) \{\
+      return String(text)\
+        .replace(/&/g, "&amp;")\
+        .replace(/</g, "&lt;")\
+        .replace(/>/g, "&gt;")\
+        .replace(/"/g, "&quot;")\
+        .replace(/'/g, "&#039;");\
+    \}\
+  </script>\
+\
+</body>\
+</html>}
